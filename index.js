@@ -1,5 +1,5 @@
-import _ from 'lodash';
-import modules from 'ui/modules';
+const _ = require('lodash');
+const modules = require('ui/modules');
 const mod = modules.get('kibana/executor', []);
 mod.service('$executor', ($rootScope, globalState, Promise, $timeout, timefilter) => {
 
