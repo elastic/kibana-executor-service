@@ -1,11 +1,11 @@
-const _ = require('lodash');
-const modules = require('ui/modules');
-const mod = modules.get('kibana/executor', []);
-mod.service('$executor', ($rootScope, globalState, Promise, $timeout, timefilter) => {
+var _ = require('lodash');
+var modules = require('ui/modules');
+var mod = modules.get('kibana/executor', []);
+mod.service('$executor', function ($rootScope, globalState, Promise, $timeout, timefilter) {
 
-  const queue = [];
-  let executionTimer;
-  let ignorePaused = false;
+  var queue = [];
+  var executionTimer;
+  var ignorePaused = false;
 
   /**
    * Resets the timer to start again
@@ -54,7 +54,7 @@ mod.service('$executor', ($rootScope, globalState, Promise, $timeout, timefilter
    * @returns {Promise} a promise of all the services
    */
   function run() {
-    return Promise.all(queue.map((service) => {
+    return Promise.all(queue.map(function (service) {
       return service.execute()
         .then(service.handleResponse || _.noop)
         .catch(service.handleError || _.noop);
@@ -89,8 +89,8 @@ mod.service('$executor', ($rootScope, globalState, Promise, $timeout, timefilter
    * Expose the methods
    */
   return {
-    register,
-    start(options = {}) {
+    register: register,
+    start: function (options = {}) {
       options = _.defaults(options, {
         ignorePaused: false,
         now: false
@@ -103,9 +103,9 @@ mod.service('$executor', ($rootScope, globalState, Promise, $timeout, timefilter
       }
       start();
     },
-    run,
-    destroy,
-    reset,
-    cancel
+    run: run,
+    destroy: destroy,
+    reset: reset,
+    cancel: cancel
   };
 });
