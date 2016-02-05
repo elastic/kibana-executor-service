@@ -1,6 +1,12 @@
 # kibana-executor-service
 A periodical executor service for Kibana
 
+## Install
+
+```
+npm install kibana-executor-service
+```
+
 ## Requirements
 - Kibana 4.4+
 
