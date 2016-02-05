@@ -90,8 +90,8 @@ mod.service('$executor', function ($rootScope, globalState, Promise, $timeout, t
    */
   return {
     register: register,
-    start: function (options = {}) {
-      options = _.defaults(options, {
+    start: function (options) {
+      options = _.defaults(options || {}, {
         ignorePaused: false,
         now: false
       });
